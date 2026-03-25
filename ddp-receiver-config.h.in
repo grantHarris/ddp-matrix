@@ -1,0 +1,21 @@
+#ifndef DDP_MATRIX_DDP_RECEIVER_CONFIG_H_
+#define DDP_MATRIX_DDP_RECEIVER_CONFIG_H_
+
+namespace ddp_matrix::build_config {
+
+inline constexpr char kGpioMapping[] = "@DDP_MATRIX_GPIO_MAPPING@";
+inline constexpr int kPanelRows = @DDP_MATRIX_PANEL_ROWS@;
+inline constexpr int kPanelCols = @DDP_MATRIX_PANEL_COLS@;
+inline constexpr int kPanelChain = @DDP_MATRIX_PANEL_CHAIN@;
+inline constexpr int kPanelParallel = @DDP_MATRIX_PANEL_PARALLEL@;
+inline constexpr int kPanelCount = @DDP_MATRIX_PANEL_COUNT@;
+inline constexpr int kCanvasWidth = @DDP_MATRIX_CANVAS_WIDTH@;
+inline constexpr int kCanvasHeight = @DDP_MATRIX_CANVAS_HEIGHT@;
+inline constexpr int kBrightness = @DDP_MATRIX_BRIGHTNESS@;
+inline constexpr int kGpioSlowdown = @DDP_MATRIX_GPIO_SLOWDOWN@;
+inline constexpr bool kEnableRealtime = @DDP_MATRIX_ENABLE_REALTIME_LITERAL@;
+inline constexpr int kRealtimePriority = @DDP_MATRIX_REALTIME_PRIORITY@;
+
+}  // namespace ddp_matrix::build_config
+
+#endif  // DDP_MATRIX_DDP_RECEIVER_CONFIG_H_

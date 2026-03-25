@@ -1,0 +1,24 @@
+if(DEFINED ENV{DESTDIR} AND NOT "$ENV{DESTDIR}" STREQUAL "")
+  message(STATUS "Skipping systemd management because DESTDIR is set.")
+else()
+  execute_process(
+    COMMAND "@DDP_MATRIX_SYSTEMCTL_EXECUTABLE@" daemon-reload
+    RESULT_VARIABLE daemon_reload_result)
+  if(NOT daemon_reload_result EQUAL 0)
+    message(FATAL_ERROR "systemctl daemon-reload failed with exit code ${daemon_reload_result}")
+  endif()
+
+  execute_process(
+    COMMAND "@DDP_MATRIX_SYSTEMCTL_EXECUTABLE@" enable "@DDP_MATRIX_SYSTEMD_SERVICE_NAME@"
+    RESULT_VARIABLE enable_result)
+  if(NOT enable_result EQUAL 0)
+    message(FATAL_ERROR "systemctl enable @DDP_MATRIX_SYSTEMD_SERVICE_NAME@ failed with exit code ${enable_result}")
+  endif()
+
+  execute_process(
+    COMMAND "@DDP_MATRIX_SYSTEMCTL_EXECUTABLE@" restart "@DDP_MATRIX_SYSTEMD_SERVICE_NAME@"
+    RESULT_VARIABLE restart_result)
+  if(NOT restart_result EQUAL 0)
+    message(FATAL_ERROR "systemctl restart @DDP_MATRIX_SYSTEMD_SERVICE_NAME@ failed with exit code ${restart_result}")
+  endif()
+endif()
